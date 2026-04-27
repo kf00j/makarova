@@ -1,4 +1,4 @@
 @echo off
-cd /d "ВСТАВЬТЕ относительный путь к main.py"
+cd /d "module1\main.py"
 python main.py
 pause

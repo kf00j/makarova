@@ -9,16 +9,23 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QPainter, QColor, QPen, QIcon, QPixmap, QTransform
 from PyQt6.QtCore import Qt, QSize
 
-# ===== Пути к медиафайлам =====
-MEDIA_DIR = r"module1\media"
-ICON_TRAFFIC_LIGHT = f"{MEDIA_DIR}\\TLgreen.png"
-IMG_CROSS_BOTTOM     = f"{MEDIA_DIR}\\Cbottom.png"
-IMG_PEDESTRIAN       = f"{MEDIA_DIR}\\Pedestrain.png"
-IMG_BLOCK            = f"{MEDIA_DIR}\\Block.png"
-IMG_HORIZONTAL_ZEBRA = f"{MEDIA_DIR}\\Zhorizontal.png"
-IMG_TL_YELLOW        = f"{MEDIA_DIR}\\TLyellow.png"
-IMG_ROAD_VERTICAL    = f"{MEDIA_DIR}\\Rvertical.png"
-IMG_ROAD_CROSS       = f"{MEDIA_DIR}\\Rcrossroads.png"
+import os
+
+# ===== Пути к медиафайлам (работает при любом запуске) =====
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_DIR = os.path.join(BASE_DIR, "media")
+
+def media_path(filename):
+    return os.path.join(MEDIA_DIR, filename)
+
+ICON_TRAFFIC_LIGHT = media_path("TLgreen.png")
+IMG_CROSS_BOTTOM     = media_path("Cbottom.png")
+IMG_PEDESTRIAN       = media_path("Pedestrain.png")
+IMG_BLOCK            = media_path("Block.png")
+IMG_HORIZONTAL_ZEBRA = media_path("Zhorizontal.png")
+IMG_TL_YELLOW        = media_path("TLyellow.png")
+IMG_ROAD_VERTICAL    = media_path("Rvertical.png")
+IMG_ROAD_CROSS       = media_path("Rcrossroads.png")
 
 PLACE_IMAGES = [IMG_CROSS_BOTTOM, IMG_PEDESTRIAN, IMG_BLOCK, IMG_HORIZONTAL_ZEBRA, IMG_TL_YELLOW]
 ROAD_IMAGES  = [IMG_ROAD_VERTICAL, IMG_ROAD_CROSS]
@@ -26,9 +33,9 @@ FREE_PLACE_ITEMS = {IMG_PEDESTRIAN, IMG_BLOCK}
 ROTATABLE_ITEMS  = {IMG_CROSS_BOTTOM, IMG_PEDESTRIAN, IMG_HORIZONTAL_ZEBRA, IMG_TL_YELLOW,
                     IMG_ROAD_VERTICAL, IMG_ROAD_CROSS}
 CYCLE_TYPES = {
-    IMG_CROSS_BOTTOM: [IMG_CROSS_BOTTOM, f"{MEDIA_DIR}\\BCvertical.png", f"{MEDIA_DIR}\\GCicon.ico"],
-    IMG_BLOCK:        [IMG_BLOCK,        f"{MEDIA_DIR}\\Stop.png",       f"{MEDIA_DIR}\\Start.png"],
-    IMG_TL_YELLOW:    [IMG_TL_YELLOW,    f"{MEDIA_DIR}\\TLred.png",      f"{MEDIA_DIR}\\TLgreen.png"],
+    IMG_CROSS_BOTTOM: [IMG_CROSS_BOTTOM, media_path("BCvertical.png"), media_path("GCicon.ico")],
+    IMG_BLOCK:        [IMG_BLOCK,        media_path("Stop.png"),       media_path("Start.png")],
+    IMG_TL_YELLOW:    [IMG_TL_YELLOW,    media_path("TLred.png"),      media_path("TLgreen.png")],
 }
 CELL_SIZE = 36
 COLS = 21
